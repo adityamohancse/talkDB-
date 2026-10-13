@@ -1,14 +1,24 @@
+
 # test_workflow.py
 
+import pytest
 from graph.workflow import build_workflow
 
 
-def test_question(agent, question):
-    """Run a question through the full pipeline."""
-    print("=" * 60)
-    print(f"🗣️  {question}")
-    print("=" * 60)
+@pytest.fixture
+def agent():
+    """Build the TalkDB workflow for testing."""
+    return build_workflow()
 
+
+@pytest.fixture
+def question():
+    """Provide a sample question for the workflow."""
+    return "Show me the total sales for each product"
+
+
+def test_question(agent, question):
+    """Run a question through the workflow."""
     result = agent.invoke({
         "user_question": question,
         "query_type": "",
@@ -24,32 +34,7 @@ def test_question(agent, question):
         "execution_trace": [],
     })
 
-    # Show execution trace
-    print("\n📍 Execution Trace:")
-    for step in result.get("execution_trace", []):
-        print(f"   {step}")
-
-    # Show SQL
-    if result.get("sql_query"):
-        print(f"\n💻 SQL: {result['sql_query']}")
-
-    # Show answer
-    print(f"\n📊 Answer:\n{result['final_answer']}")
-    print()
-
-
-if __name__ == "__main__":
-    print("Building TalkDB agent...\n")
-    agent = build_workflow()
-
-    # Test 1: Simple query
-    test_question(agent, "How many customers do we have?")
-
-    # Test 2: Sales analysis
-    test_question(agent, "What are the top 3 product categories by total revenue?")
-
-    # Test 3: Inventory
-    test_question(agent, "Which products need restocking urgently?")
-
-    # Test 4: Comparison
-    test_question(agent, "Compare sales performance across all store locations")
+    assert result is not None
+    assert isinstance(result, dict)
+    print("Workflow executed successfully")
+    print("Final answer:", result.get("final_answer", ""))

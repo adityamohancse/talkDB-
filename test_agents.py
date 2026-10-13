@@ -7,7 +7,8 @@ from database.connection import run_query
 from database.security import validate_sql
 
 
-def test_full_flow(question):
+def test_full_flow():
+    question = "Show me the total sales for each product"
     """Test the full flow: classify → generate SQL → execute → analyze."""
     print("=" * 60)
     print(f"Question: {question}")
