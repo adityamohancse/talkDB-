@@ -1,0 +1,164 @@
+{
+    "test_cases": [
+        {
+            "id": 1,
+            "question": "How many products do we have?",
+            "category": "simple_lookup",
+            "expected_query_type": "simple_query",
+            "expected_sql_contains": ["COUNT", "products"],
+            "expected_answer_contains": ["200"]
+        },
+        {
+            "id": 2,
+            "question": "How many customers are in the database?",
+            "category": "simple_lookup",
+            "expected_query_type": "simple_query",
+            "expected_sql_contains": ["COUNT", "customers"],
+            "expected_answer_contains": ["500"]
+        },
+        {
+            "id": 3,
+            "question": "What are the top 5 best selling products?",
+            "category": "sales_analysis",
+            "expected_query_type": "sales_analysis",
+            "expected_sql_contains": ["SUM", "quantity_sold", "products", "sales", "LIMIT 5"],
+            "expected_answer_contains": ["top", "selling"]
+        },
+        {
+            "id": 4,
+            "question": "Which products are below reorder level?",
+            "category": "inventory",
+            "expected_query_type": "inventory_question",
+            "expected_sql_contains": ["stock_quantity", "reorder_level"],
+            "expected_answer_contains": ["restock", "below"]
+        },
+        {
+            "id": 5,
+            "question": "Compare sales performance across all store locations",
+            "category": "comparison",
+            "expected_query_type": "sales_analysis",
+            "expected_sql_contains": ["store_location", "SUM"],
+            "expected_answer_contains": ["Riyadh", "Jeddah", "Dammam"]
+        },
+        {
+            "id": 6,
+            "question": "What is the total revenue?",
+            "category": "simple_lookup",
+            "expected_query_type": "simple_query",
+            "expected_sql_contains": ["SUM", "total_amount"],
+            "expected_answer_contains": []
+        },
+        {
+            "id": 7,
+            "question": "Show me profit margins by product category",
+            "category": "sales_analysis",
+            "expected_query_type": "sales_analysis",
+            "expected_sql_contains": ["cost_price", "selling_price", "category"],
+            "expected_answer_contains": ["margin"]
+        },
+        {
+            "id": 8,
+            "question": "Which payment method is most popular?",
+            "category": "sales_analysis",
+            "expected_query_type": "sales_analysis",
+            "expected_sql_contains": ["payment_method", "COUNT"],
+            "expected_answer_contains": ["mada"]
+        },
+        {
+            "id": 9,
+            "question": "Who are the top 10 customers by total purchases?",
+            "category": "sales_analysis",
+            "expected_query_type": "sales_analysis",
+            "expected_sql_contains": ["customers", "total_purchases", "LIMIT"],
+            "expected_answer_contains": ["customer"]
+        },
+        {
+            "id": 10,
+            "question": "How many products are in the Electronics category?",
+            "category": "simple_lookup",
+            "expected_query_type": "simple_query",
+            "expected_sql_contains": ["COUNT", "products", "Electronics"],
+            "expected_answer_contains": ["25"]
+        },
+        {
+            "id": 11,
+            "question": "What is the average transaction value per store?",
+            "category": "sales_analysis",
+            "expected_query_type": "sales_analysis",
+            "expected_sql_contains": ["AVG", "store_location"],
+            "expected_answer_contains": ["average"]
+        },
+        {
+            "id": 12,
+            "question": "Which supplier provides the most products?",
+            "category": "sales_analysis",
+            "expected_query_type": "sales_analysis",
+            "expected_sql_contains": ["supplier", "COUNT"],
+            "expected_answer_contains": ["supplier"]
+        },
+        {
+            "id": 13,
+            "question": "List all product categories",
+            "category": "simple_lookup",
+            "expected_query_type": "simple_query",
+            "expected_sql_contains": ["category", "products"],
+            "expected_answer_contains": ["Electronics", "Clothing"]
+        },
+        {
+            "id": 14,
+            "question": "What products have zero stock?",
+            "category": "inventory",
+            "expected_query_type": "inventory_question",
+            "expected_sql_contains": ["stock_quantity", "0"],
+            "expected_answer_contains": []
+        },
+        {
+            "id": 15,
+            "question": "Show total sales by month",
+            "category": "time_range",
+            "expected_query_type": "sales_analysis",
+            "expected_sql_contains": ["sale_date", "SUM"],
+            "expected_answer_contains": []
+        },
+        {
+            "id": 16,
+            "question": "What is the most expensive product?",
+            "category": "simple_lookup",
+            "expected_query_type": "simple_query",
+            "expected_sql_contains": ["selling_price", "ORDER BY", "LIMIT"],
+            "expected_answer_contains": []
+        },
+        {
+            "id": 17,
+            "question": "How many sales were made using mada payment?",
+            "category": "simple_lookup",
+            "expected_query_type": "simple_query",
+            "expected_sql_contains": ["COUNT", "payment_method", "mada"],
+            "expected_answer_contains": []
+        },
+        {
+            "id": 18,
+            "question": "Which category has the highest profit margin?",
+            "category": "sales_analysis",
+            "expected_query_type": "sales_analysis",
+            "expected_sql_contains": ["cost_price", "selling_price", "category"],
+            "expected_answer_contains": ["margin"]
+        },
+        {
+            "id": 19,
+            "question": "How many products need restocking in the Clothing category?",
+            "category": "inventory",
+            "expected_query_type": "inventory_question",
+            "expected_sql_contains": ["stock_quantity", "reorder_level", "Clothing"],
+            "expected_answer_contains": []
+        },
+        {
+            "id": 20,
+            "question": "What is the total number of sales transactions?",
+            "category": "simple_lookup",
+            "expected_query_type": "simple_query",
+            "expected_sql_contains": ["COUNT", "sales"],
+            "expected_answer_contains": ["30000"]
+        }
+    ]
+}

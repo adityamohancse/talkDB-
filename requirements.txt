@@ -1,0 +1,13 @@
+psycopg2-binary
+google-genai
+groq
+langgraph
+langchain
+langchain-google-genai
+fastapi
+uvicorn
+streamlit
+plotly
+pandas
+pydantic
+python-dotenv
